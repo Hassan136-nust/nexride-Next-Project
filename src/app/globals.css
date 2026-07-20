@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* Hide scrollbar (Chrome, Safari, Edge) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar (Firefox) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Leaflet custom pins */
+.leaflet-container .custom-map-pin,
+.leaflet-container .vehicle-map-pin {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ── Ride-searching radar animation ── */
+@keyframes radar-pulse {
+  0%   { transform: scale(0.3); opacity: 0.7; }
+  100% { transform: scale(1);   opacity: 0; }
+}
+@keyframes radar-pulse-delayed {
+  0%   { transform: scale(0.3); opacity: 0; }
+  10%  { opacity: 0.5; }
+  100% { transform: scale(1);   opacity: 0; }
+}
+@keyframes float-dot {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes car-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-3px) scale(1.05); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes dot-blink {
+  0%, 20%  { opacity: 0; }
+  50%      { opacity: 1; }
+  100%     { opacity: 0; }
+}
+@keyframes orbit {
+  0%   { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+@keyframes orbit-reverse {
+  0%   { transform: rotate(0deg) translateX(45px) rotate(0deg); }
+  100% { transform: rotate(-360deg) translateX(45px) rotate(360deg); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px 2px rgba(245,158,11,0.15); }
+  50%      { box-shadow: 0 0 40px 8px rgba(245,158,11,0.3); }
+}
