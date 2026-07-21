@@ -9,10 +9,8 @@ export async function POST(req: NextRequest) {
         if (!session?.user) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
-
         const body = await req.json()
         const { lat, lng } = body
-
         if (
             typeof lat !== 'number' ||
             typeof lng !== 'number' ||
@@ -23,7 +21,6 @@ export async function POST(req: NextRequest) {
         ) {
             return NextResponse.json({ error: 'Invalid coordinates' }, { status: 400 })
         }
-
         const sessionUser = session.user as { id: string; role: string }
 
         if (sessionUser.role !== 'partner') {
