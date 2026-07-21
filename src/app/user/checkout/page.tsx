@@ -19,7 +19,6 @@ import {
   Package,
 } from 'lucide-react'
 
-// Simple icons mapped
 const VEHICLE_ICONS: Record<string, React.ElementType> = {
   bike: Bike,
   car: Car,
