@@ -78,7 +78,15 @@ function AuthModal({
       setLoading(false)
 
       if (res?.error) {
-        setError(res.error)
+        const normalizedError =
+          res.error === "Invalid password" ||
+            res.error === "User does not exist" ||
+            res.error === "Password not set for this user" ||
+            res.error === "Email or password does not exist"
+            ? "Email or password does not exist"
+            : res.error
+
+        setError(normalizedError)
       } else {
         onClose()
       }
@@ -293,82 +301,82 @@ function AuthModal({
             ) : (
 
               /* SIGNUP */
-             /* SIGNUP */
-<motion.div>
-  <h1 className='text-xl text-center font-semibold'>Create Account</h1>
+              /* SIGNUP */
+              <motion.div>
+                <h1 className='text-xl text-center font-semibold'>Create Account</h1>
 
-  <div className='mt-5 space-y-4'>
+                <div className='mt-5 space-y-4'>
 
-    {/* Name */}
-    <div className='flex items-center gap-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-black transition'>
-      <User size={20} className='text-gray-400' />
+                  {/* Name */}
+                  <div className='flex items-center gap-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-black transition'>
+                    <User size={20} className='text-gray-400' />
 
-      <input
-        type='text'
-        placeholder='Full Name'
-        className='w-full outline-none bg-transparent text-sm'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-    </div>
+                    <input
+                      type='text'
+                      placeholder='Full Name'
+                      className='w-full outline-none bg-transparent text-sm'
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
 
-    {/* Email */}
-    <div className='flex items-center gap-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-black transition'>
-      <Mail size={20} className='text-gray-400' />
+                  {/* Email */}
+                  <div className='flex items-center gap-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-black transition'>
+                    <Mail size={20} className='text-gray-400' />
 
-      <input
-        type='email'
-        placeholder='Email'
-        className='w-full outline-none bg-transparent text-sm'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-    </div>
+                    <input
+                      type='email'
+                      placeholder='Email'
+                      className='w-full outline-none bg-transparent text-sm'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
 
-    {/* Password */}
-    <div className='flex items-center gap-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-black transition'>
-      <Lock size={20} className='text-gray-400' />
+                  {/* Password */}
+                  <div className='flex items-center gap-3 border border-gray-300 rounded-lg px-3 py-2 focus-within:ring-2 focus-within:ring-black transition'>
+                    <Lock size={20} className='text-gray-400' />
 
-      <input
-        type='password'
-        placeholder='Password'
-        className='w-full outline-none bg-transparent text-sm'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-    </div>
+                    <input
+                      type='password'
+                      placeholder='Password'
+                      className='w-full outline-none bg-transparent text-sm'
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
 
-    {/* Error */}
-    {error && (
-      <p className='text-red-500 text-sm text-center'>{error}</p>
-    )}
+                  {/* Error */}
+                  {error && (
+                    <p className='text-red-500 text-sm text-center'>{error}</p>
+                  )}
 
-    {/* Button */}
-    <button
-      onClick={handleSignup}
-      disabled={loading}
-      className='w-full h-11 rounded-lg bg-black text-white text-sm font-semibold flex justify-center items-center hover:bg-gray-900 active:scale-[0.98] transition shadow-md'
-    >
-      {!loading ? (
-        "Sign Up"
-      ) : (
-        <CircleDashed size={18} className='animate-spin' />
-      )}
-    </button>
+                  {/* Button */}
+                  <button
+                    onClick={handleSignup}
+                    disabled={loading}
+                    className='w-full h-11 rounded-lg bg-black text-white text-sm font-semibold flex justify-center items-center hover:bg-gray-900 active:scale-[0.98] transition shadow-md'
+                  >
+                    {!loading ? (
+                      "Sign Up"
+                    ) : (
+                      <CircleDashed size={18} className='animate-spin' />
+                    )}
+                  </button>
 
-    {/* Switch */}
-    <p className='text-sm text-gray-600 text-center'>
-      Already have an account?{" "}
-      <span
-        className='text-black font-medium hover:underline cursor-pointer transition'
-        onClick={() => setStep("login")}
-      >
-        Login
-      </span>
-    </p>
+                  {/* Switch */}
+                  <p className='text-sm text-gray-600 text-center'>
+                    Already have an account?{" "}
+                    <span
+                      className='text-black font-medium hover:underline cursor-pointer transition'
+                      onClick={() => setStep("login")}
+                    >
+                      Login
+                    </span>
+                  </p>
 
-  </div>
-</motion.div>
+                </div>
+              </motion.div>
 
             )}
 
