@@ -57,7 +57,6 @@ io.on("connection", (socket) => {
         return
       }
 
-      // store on socket
       socket.userId = userId
 
       await User.findByIdAndUpdate(userId, {
