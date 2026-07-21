@@ -12,8 +12,6 @@ export async function GET(req: NextRequest) {
     if (!session || !session.user?.email) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
     }
-
-    // Find user by email
     const user = await User.findOne({ email: session.user.email }).select(
       "videoKycStatus videoKycRoomId videoKycRejectionReason role"
     )
@@ -27,12 +25,11 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "Only partners can access KYC room" }, { status: 403 })
     }
 
-    // Check if KYC is in progress
     if (user.videoKycStatus !== "in_progress" || !user.videoKycRoomId) {
       return NextResponse.json(
-        { 
-          message: "No active KYC session", 
-          videoKycStatus: user.videoKycStatus 
+        {
+          message: "No active KYC session",
+          videoKycStatus: user.videoKycStatus
         },
         { status: 400 }
       )
