@@ -277,7 +277,11 @@ function AuthModal({
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-
+                  {error && (
+                    <p className="text-red-500 text-sm text-center">
+                      {error}
+                    </p>
+                  )}
                   <button
                     onClick={handleLogin}
                     disabled={loading}
